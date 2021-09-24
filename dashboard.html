@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="web application for visualisation data for arduino">
+    <meta name="keywords" content="admin, dashboard, web app">
+
+    <title>Assistance Driver</title>
+
+    <!-- Styles -->
+    <link href="assets/css/core.min.css" rel="stylesheet">
+    <link href="assets/css/app.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <!-- Favicons -->
+    <!--    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">-->
+    <!--    <link rel="icon" href="assets/img/favicon.png">-->
+</head>
+
+<body>
+
+
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="spinner-dots">
+            <span class="dot1"></span>
+            <span class="dot2"></span>
+            <span class="dot3"></span>
+        </div>
+    </div>
+
+
+    <!-- Sidebar -->
+    <!--<aside class="sidebar sidebar-expand-lg sidebar-light sidebar-sm sidebar-color-secondary">-->
+
+    <!--    <header class="sidebar-header">-->
+    <!--        <span class="logo">-->
+    <!--&lt;!&ndash;          <a href="dashboard.html">Title</a>&ndash;&gt;-->
+    <!--        </span>-->
+    <!--    </header>-->
+
+    <!--&lt;!&ndash;    <nav class="sidebar-navigation">&ndash;&gt;-->
+    <!--&lt;!&ndash;        <ul class="menu menu-sm menu-bordery">&ndash;&gt;-->
+
+    <!--&lt;!&ndash;            <li class="menu-item">&ndash;&gt;-->
+    <!--&lt;!&ndash;                <a class="menu-link active" href="dashboard.html">&ndash;&gt;-->
+    <!--&lt;!&ndash;                    <span class="icon ti-bar-chart"></span>&ndash;&gt;-->
+    <!--&lt;!&ndash;                    <span class="title">Dashboard</span>&ndash;&gt;-->
+    <!--&lt;!&ndash;                </a>&ndash;&gt;-->
+    <!--&lt;!&ndash;            </li>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;        </ul>&ndash;&gt;-->
+    <!--&lt;!&ndash;    </nav>&ndash;&gt;-->
+
+    <!--</aside>-->
+    <!-- END Sidebar -->
+
+
+
+    <!-- TopBar -->
+    <header class="topbar">
+        <div class="topbar-left">
+            <!--        <span class="topbar-btn sidebar-toggler"><i>&#9776;</i></span>-->
+
+        </div>
+
+        <div class="topbar-right">
+            <a class="logo d-lg-none" href="dashboard.html"></a>
+            <a class="dropdown-item" href="#"><i class="ti-power-off"></i></a>
+            <a class="dropdown-item" href="#">Name</a>
+        </div>
+    </header>
+    <!-- END Topbar -->
+
+
+
+    <!-- Main container -->
+    <main class="main-container">
+
+        <div class="main-content">
+            <!--        google api for update map-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <h4 class="card-title"><strong>Trajet</strong></h4>
+
+                        <div class="card-body">
+                            <div class="h-300px">
+                                <div id="map">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--        table-->
+            <div class="row">
+                <div class="card-body">
+                    <div id="jsgrid-sorting" data-provide="jsgrid"></div>
+                </div>
+            </div>
+        </div>
+        <!--/.main-content -->
+
+    </main>
+    <!-- END Main container -->
+
+
+
+    <!-- Scripts -->
+    <script src="assets/js/core.min.js"></script>
+    <script src="assets/js/app.min.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/data/js/jsgrid-db.js"></script>
+
+    <script>
+        /*
+                                                                                        |--------------------------------------------------------------------------
+                                                                                        | jsGrid - Sorting
+                                                                                        |--------------------------------------------------------------------------
+                                                                                        */
+        app.ready(() => {
+            $("#jsgrid-sorting").jsGrid({
+                height: "500px",
+                width: "100%",
+                autoload: true,
+                selecting: false,
+                controller: db,
+                fields: [{
+                    name: "date",
+                    type: "text",
+                    width: 150,
+                }, {
+                    name: "heure",
+                    type: "text",
+                    width: 100
+                }, {
+                    name: "position",
+                    width: 200
+                }, ]
+            });
+
+            $('#sortingField').on('change', function() {
+                $("#jsgrid-sorting").jsGrid("sort", $(this).val());
+            });
+        })
+    </script>
+
+
+
+</body>
+
+</html>
